@@ -1,12 +1,10 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "minishell.h"
 
-int main (int argc, char **argv)//, char **envp)
+int main (int argc, char **argv, char **envp)
 {
 	char	*input;
 
+	input = (char *) NULL;
 	// input checking argc und argv
 	if (argc != 1 && argv[0])
 	{
@@ -16,15 +14,29 @@ int main (int argc, char **argv)//, char **envp)
 	while (1)
 	{
 		input = readline("hamstershell > ");
+		if (input)
+			add_history(input);
+		while (*envp)
+		{
+			printf("%s\n", *envp);
+			envp++;
+		}
+		// check_input_str(argc, *argv)
 	}
-	printf("%s\n", input);
-
-	//show prompt hamstershell >
-
-	//input history
 
 	//input checking -  lexing token checking
 	return(0);
 }
 
-//yuan branches
+// int	check_input_str(int argc, char **argv)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < argc)
+// 	{
+
+// 	}
+
+// 	return (0);
+// }
