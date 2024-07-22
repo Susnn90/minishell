@@ -28,6 +28,7 @@ void parse_command(const char *input, char **command, char **args)
 //echo 'hello $USER' -> hello $USER
 //echo "hello $USER" -> hello babybird
 //env and command will be meaningless in SINGLE quote, but not in double quote
+// "\" works the same as DOUBLE quote
 /**********TODO********************/
 void	handle_quotes(char *input, char **args) 
 {
