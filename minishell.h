@@ -8,7 +8,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-#define	MAX_ARGS //maximum amount of acceptable variables from an input
+//#define	MAX_ARGS //maximum amount of acceptable variables from an input
+#define WHITESPACE  "\t\n"
+#define QUOTES	"\'\""
 
 typedef struct	s_tools
 {
@@ -17,21 +19,27 @@ typedef struct	s_tools
 	char	**envp;
 }	t_tools;
 
-typedef struct s_node {
+typedef struct s_list {
 	char	*token;
-	struct s_node *prev;
-	struct s_node *next;
-}	t_node;
+	struct s_list *prev;
+	struct s_list *next;
+}	t_list;
+
+typedef struct s_token
+{
+	int	type;
+	char	*content;
+}	t_token;
 
 // Main & Utils
 int main (int argc, char **argv, char **envp);
 
-//parse input
-void parse_command(const char *input, char **command, char **args);
-void	handle_quotes(char *input, char **args); //TODO
+//lexer
+static void	get_token_list(char *input);
 
-//create double link list for tokens
-t_node	*create_node(char *token);
-void	append_node(t_node **head, t_node **tail, char *token);
-void	free_list(t_node *head);
+//parse input
+// void parse_command(const char *input, char **command, char **args);
+// void	handle_quotes(char *input, char **args); //TODO
+
+
 #endif
