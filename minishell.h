@@ -12,6 +12,17 @@
 #define WHITESPACE  "\t\n"
 #define QUOTES	"\'\""
 
+#define T_D_QUOTES 4 //double quote "\""
+#define T_S_QUOTES 2 //single quote '\''
+#define T_PIPE 64 //pipe '|'
+#define T_REDIR 512 //redirection '>' '<' '>>' '<<'
+#define T_TEXT 1 //text 
+#define T_O_BRACKET 128 //open bracket '('
+#define T_C_BRACKET 256 //close bracket ')'
+#define T_BI_OP 32 //binary operator '&'
+
+//define ENVP
+
 typedef struct	s_tools
 {
 	char	*args;
@@ -20,7 +31,7 @@ typedef struct	s_tools
 }	t_tools;
 
 typedef struct s_list {
-	char	*token;
+	t_token	*token;
 	struct s_list *prev;
 	struct s_list *next;
 }	t_list;
