@@ -5,48 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/25 12:26:43 by cwick            ###   ########.fr        #
+#    Created: 2023/11/13 12:21:34 by cwick             #+#    #+#              #
+#    Updated: 2024/07/25 12:23:03 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+NAME = tokenlist.a
 
-SRC = main.c lexer.c lexer_utils.c
+SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
+	ft_lstiter.c ft_lstmap.c
+
 OBJ = $(SRC:.c=.o)
-
-LIBFT = libft/libft.a
-PRINTF = libft/ft_printf/printf.a
-TOKEN_LIST = token_list/tokenlist.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS = -lreadline			#linker flags
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(TOKEN_LIST)
-	$(CC) $(OBJ) $(LIBFT) $(PRINTF) $(TOKEN_LIST) -o $(NAME) $(LFLAGS)
+$(NAME): $(OBJ)
+	ar rcs $@ $^
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	$(MAKE) -C libft
-
-$(LIBFT):
-	$(MAKE) -C libft
-
- $(TOKEN_LIST):
-	$(MAKE) -C token_list
 
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C libft clean
-	$(MAKE) -C token_list clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C libft fclean
-	$(MAKE) -C token_list fclean
 
 re: fclean all
 

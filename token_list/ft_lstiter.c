@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 13:59:38 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/04 16:18:44 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/05 08:29:05 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/25 12:43:08 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokenlist.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstiter(t_list *lst, void (*f)(void*))
 {
-	t_list	*new_node;
-
-	new_node = (t_list *) malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node ->content = content;
-	new_node ->next = NULL;
-	return (new_node);
+	if (!lst || !f)
+		return ;
+	while (lst != NULL)
+	{
+		f(lst->token->content);
+		lst = lst->next;
+	}
 }

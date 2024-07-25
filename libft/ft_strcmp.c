@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:14:20 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/04 17:09:38 by cwick            ###   ########.fr       */
+/*   Created: 2024/07/25 11:22:44 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/25 11:23:04 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (lst)
+	while (s1[i] && s2[i])
 	{
+		if (s1[i] < s2[i])
+			return (-1);
+		else if (s1[i] > s2[i])
+			return (1);
 		i++;
-		lst = lst -> next;
 	}
-	return (i);
+	return (0);
 }

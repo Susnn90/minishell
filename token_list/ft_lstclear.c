@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:50:08 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/25 11:22:38 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/05 08:11:11 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/25 12:42:56 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokenlist.h"
 
-//#include <stdio.h>
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	size_t	i;
+	t_list	*current;
 
-	i = 0;
-	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	if (!lst || !del)
+		return ;
+	while (*lst != NULL)
 	{
-		if ((unsigned char)s1[i] < (unsigned char)s2[i])
-			return (-1);
-		else if ((unsigned char)s1[i] > (unsigned char)s2[i])
-			return (1);
-		i++;
+		current = *lst;
+		*lst = (*lst)->next;
+		del(current->token->content);
+		free(current);
 	}
-	return (0);
+	*lst = NULL;
 }
