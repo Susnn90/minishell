@@ -18,7 +18,7 @@ minishell
 *.app
 
 # IDE directories and files
-.vscode/
+# .vscode/
 *.code-workspace
 .idea/
 *.iml

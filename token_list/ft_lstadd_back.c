@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:52:00 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/25 12:42:46 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/26 12:32:19 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!last_pos)
 		*lst = new;
 	else
+	{
 		last_pos->next = new;
+		new->prev = last_pos;
+	}
 }

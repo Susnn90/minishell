@@ -2,13 +2,13 @@
 
 void print_token_list(t_list *token_list) {
 	t_list *current = token_list;
-	t_token	*token;
+	// t_token	*token;
 
 	while (current)
 	{
-		token = (t_token *)current->token;
-		if (token && token->type)
-			printf("TokenType: %d\n", current->token->type);
+		current->token = (t_token *)current->token;
+		if (current->token && current->token->type)
+			printf("Token: %s\nType: %d\n",current->token->content, current->token->type);
 		current = current->next;
 	}
 }
@@ -35,9 +35,6 @@ int main (int argc, char **argv)//, char **envp)
 			token_type(input, token_list);
 			print_token_list(token_list);
 		}
-		// check_input_str(argc, *argv)
 	}
-
-	//input checking -  lexing token checking
 	return(0);
 }

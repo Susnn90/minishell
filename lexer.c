@@ -1,41 +1,28 @@
 #include "minishell.h"
 
-t_token	*create_token(char *input, t_token *token, int i, int start)
-{
-	token = (t_token *)malloc(sizeof(t_token));
-	if (!token)
-		return (NULL);
-	token->content = ft_substr(input, start, i - start);
-	if (!token->content)
-	{
-		free(token);
-		return (NULL);
-	}
-	return (token);
-}
-
 //create a double link list from input
-t_list	*get_token_list(char *input)
+t_list	*get_token_list(char *input, t_list *token_list)
 {
 	int		i;
 	int		start;
-	t_list	*token_list;
-	t_token	*token;
+	t_list	*new_token;
 
 	i = 0;
-	token_list = NULL;
-	token = NULL;
 	while (input[i])
 	{
 		start = i;
 		while (input[i] && !ft_strchr(WHITESPACE, input[i]))
 			i++;
 		if (start < i)
-			create_token(input, token, i, start);
-		if (token_list == NULL)
-			token_list = ft_lstnew(token);
-		else
-			ft_lstadd_back(&token_list, ft_lstnew(token));
+		{
+			new_token = ft_lstnew(ft_substr(input, start, i - start));
+			if (!new_token || !new_token->token->content)
+			{
+				ft_lstclear(&token_list, free);
+				return (NULL);
+			}
+			ft_lstadd_back(&token_list, new_token);
+		}
 		while (input[i] && ft_strchr(WHITESPACE, input[i]))
 			i++;
 	}
@@ -74,7 +61,7 @@ void	token_type(char *input, t_list *token_list)
 {
 	t_list	*current;
 
-	token_list = get_token_list(input);
+	token_list = get_token_list(input, token_list);
 	current = move_to_list_head(token_list);
 	while (current)
 	{
