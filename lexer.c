@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_list	*create_token(char *input,t_list *token_list, t_token *token, int i, int start)
+t_token	*create_token(char *input, t_token *token, int i, int start)
 {
 	token = (t_token *)malloc(sizeof(t_token));
 	if (!token)
@@ -11,7 +11,7 @@ t_list	*create_token(char *input,t_list *token_list, t_token *token, int i, int 
 		free(token);
 		return (NULL);
 	}
-	return (token_list);
+	return (token);
 }
 
 //create a double link list from input
@@ -31,7 +31,7 @@ t_list	*get_token_list(char *input)
 		while (input[i] && !ft_strchr(WHITESPACE, input[i]))
 			i++;
 		if (start < i)
-			create_token(input,token_list, token, i, start);
+			create_token(input, token, i, start);
 		if (token_list == NULL)
 			token_list = ft_lstnew(token);
 		else
@@ -50,25 +50,10 @@ t_list	*move_to_list_head(t_list *current)
 	return (current);
 }
 
-//define token type
-void	token_type(char *input, t_list *token_list)
-{
-	t_list	*current;
-	t_token	*token;
-
-	token_list = get_token_list(input);
-	current = move_to_list_head(token_list);
-	while (current)
-	{
-		define_token_type(current->token);
-		current = current->next;
-	}
-}
-
 //define token type, with giving definiation (check minishell.h line.15-line.22)
 void	define_token_type(t_token *token)
 {
-	if (ft_strcmp(token->content, "\'") == 0)
+	if (ft_strcmp(token->content, "'") == 0)
 		token->type = T_S_QUOTES;
 	else if (ft_strcmp(token->content, "\"") == 0)
 		token->type = T_D_QUOTES;
@@ -83,4 +68,17 @@ void	define_token_type(t_token *token)
 		token->type = T_BI_OP;
 	else
 		token->type = T_TEXT;
+}
+//define token type
+void	token_type(char *input, t_list *token_list)
+{
+	t_list	*current;
+
+	token_list = get_token_list(input);
+	current = move_to_list_head(token_list);
+	while (current)
+	{
+		define_token_type(current->token);
+		current = current->next;
+	}
 }

@@ -1,5 +1,18 @@
 #include "minishell.h"
 
+void print_token_list(t_list *token_list) {
+	t_list *current = token_list;
+	t_token	*token;
+
+	while (current)
+	{
+		token = (t_token *)current->token;
+		if (token && token->type)
+			printf("TokenType: %d\n", current->token->type);
+		current = current->next;
+	}
+}
+
 int main (int argc, char **argv)//, char **envp)
 {
 	char	*input;
@@ -20,6 +33,7 @@ int main (int argc, char **argv)//, char **envp)
 		{
 			add_history(input);
 			token_type(input, token_list);
+			print_token_list(token_list);
 		}
 		// check_input_str(argc, *argv)
 	}
