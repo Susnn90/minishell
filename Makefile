@@ -6,7 +6,7 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/25 12:26:43 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/26 12:47:14 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(TOKEN_LIST)
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	$(MAKE) -C libft
+	# $(MAKE) -C libft
 
 $(LIBFT):
 	$(MAKE) -C libft

@@ -4,11 +4,10 @@ void print_token_list(t_list *token_list) {
 	t_list *current = token_list;
 	// t_token	*token;
 
-	while (current)
+	while (token_list)
 	{
-		current->token = (t_token *)current->token;
-		if (current->token && current->token->type)
-			printf("Token: %s\nType: %d\n",current->token->content, current->token->type);
+		if (token_list->token->content || current->token->type)
+			printf("Token: %s\n type: %d\n",token_list->token->content, token_list->token->type);
 		current = current->next;
 	}
 }

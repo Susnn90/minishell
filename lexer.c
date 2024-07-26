@@ -68,4 +68,5 @@ void	token_type(char *input, t_list *token_list)
 		define_token_type(current->token);
 		current = current->next;
 	}
+	current = move_to_list_head(token_list);
 }
