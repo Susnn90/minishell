@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 08:34:44 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/25 12:43:20 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/26 18:06:33 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*))
 	new_list = NULL;
 	while (lst != NULL)
 	{
-		new_element = ft_lstnew(f(lst->token->content));
+		new_element = ft_lstnew(f(lst->content));
 		if (!new_element)
 		{
 			ft_lstclear(&new_list, del);

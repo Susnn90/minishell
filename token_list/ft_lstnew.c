@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:59:38 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/26 12:40:59 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/26 17:34:17 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,10 @@ t_list	*ft_lstnew(void *input)
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
-	new_node->token = (t_token *)malloc(sizeof(t_token));
-	if (!new_node->token)
-	{
-		free(new_node);
-		return (NULL);
-	}
-	new_node->token->content = (char*)input;
-	new_node->next = NULL;
+	new_node->content = input;
+	new_node->index = 0;
+	new_node->type = 0;
 	new_node->prev = NULL;
+	new_node->next = NULL;
 	return (new_node);
 }

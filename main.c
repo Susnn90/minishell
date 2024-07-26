@@ -1,38 +1,41 @@
 #include "minishell.h"
 
-void print_token_list(t_list *token_list) {
+void print_token_list(t_list *token_list)
+{
 	t_list *current = token_list;
-	// t_token	*token;
 
-	while (token_list)
+	while (current)
 	{
-		if (token_list->token->content || current->token->type)
-			printf("Token: %s\n type: %d\n",token_list->token->content, token_list->token->type);
-		current = current->next;
+		if (current->content || current->type)
+			printf("Token: %s\n type: %d\n",current->content, current->type);
+		if (current->next)
+			current = current->next;
 	}
 }
 
-int main (int argc, char **argv)//, char **envp)
+int main (int argc, char **argv)			//, char **envp)
 {
 	char	*input;
+	int		n_of_token;
 	t_list	*token_list;
 
 	input = (char *) NULL;
+	n_of_token = 0;
 	token_list = NULL;
 	if (argc != 1 && argv[0])
 	{
 		printf("Wrong input: usage > ./minishell");
 		return (0);
 	}
-	// init structs
 	while (1)
 	{
 		input = readline("hamstershell > ");
 		if (input)
 		{
 			add_history(input);
-			token_type(input, token_list);
-			print_token_list(token_list);
+			n_of_token = count_token(input);
+			lexer(input, token_list, n_of_token);
+			// print_token_list(token_list);
 		}
 	}
 	return(0);

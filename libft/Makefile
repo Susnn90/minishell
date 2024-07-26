@@ -6,7 +6,7 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 12:21:34 by cwick             #+#    #+#              #
-#    Updated: 2024/07/25 12:10:07 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/26 15:07:57 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,29 +21,22 @@ SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.
 
 OBJ = $(SRC:.c=.o)
 
-PRINTF = ft_printf/printf.a
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PRINTF)
+$(NAME): $(OBJ)
 	ar rcs $@ $^
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(PRINTF):
-	$(MAKE) -C ft_printf
-
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C ft_printf clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C ft_printf fclean
 
 re: fclean all
 

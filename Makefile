@@ -6,27 +6,26 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/26 12:47:14 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/26 17:08:24 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c lexer.c lexer_utils.c
+SRC = main.c lexer_chris.c lexer_utils.c count_token.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a
-PRINTF = libft/ft_printf/printf.a
 TOKEN_LIST = token_list/tokenlist.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 LFLAGS = -lreadline			#linker flags
 
-all: $(NAME)
+all: $(NAME) clean
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(TOKEN_LIST)
-	$(CC) $(OBJ) $(LIBFT) $(PRINTF) $(TOKEN_LIST) -o $(NAME) $(LFLAGS)
+$(NAME): $(OBJ) $(LIBFT) $(TOKEN_LIST)
+	$(CC) $(OBJ) $(LIBFT) $(TOKEN_LIST) -o $(NAME) $(LFLAGS)
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@

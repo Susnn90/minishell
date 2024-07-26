@@ -2,7 +2,6 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
-# include "libft/ft_printf/ft_printf.h"
 # include "token_list/tokenlist.h"
 # include <stdio.h>
 # include <stddef.h>
@@ -26,7 +25,7 @@
 
 // Main & Utils
 int main (int argc, char **argv);//, char **envp);
-
+int	count_token(char *input);
 //lexer
 
 //parse input

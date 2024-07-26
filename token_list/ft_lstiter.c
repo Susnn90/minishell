@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 08:29:05 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/25 12:43:08 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/26 18:05:57 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void*))
 		return ;
 	while (lst != NULL)
 	{
-		f(lst->token->content);
+		f(lst->content);
 		lst = lst->next;
 	}
 }

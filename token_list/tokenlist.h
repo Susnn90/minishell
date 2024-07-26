@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:18:38 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/26 12:42:11 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/26 17:53:39 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,24 @@
 # include <stdlib.h>
 # include "../minishell.h"
 # include "../libft/libft.h"
-# include "../libft/ft_printf/ft_printf.h"
 
-typedef struct s_token
-{
-	int		type;
-	char	*content;
-	char	**envp;
-}	t_token;
+// typedef struct s_token
+// {
+// 	int		type;
+// 	char	*content;
+// 	char	**envp;
+
+// }	t_token;
 
 typedef struct s_list
 {
-	t_token	*token;
+	// t_token	*token;
 	struct s_list *prev;
 	struct s_list *next;
+	int		index;
+	int		type;
+	char	*content;
+	char	**envp;
 }	t_list;
 
 t_list	*ft_lstnew(void *input);
@@ -45,12 +49,12 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void*));
 
 // LEXER
+t_list	*lexer(char *input, t_list *token_list, int n_of_token);
 t_list	*get_token_list(char *input, t_list *token_list);
 t_list	*move_to_list_head(t_list *current);
 int		token_len(char *str);
 int		quote_text_len(char *str);
 int		other_marks(char *c);
-void	token_type(char *input, t_list *token_list);
-void	define_token_type(t_token *token);
+void	define_token_type(t_list *token_list);
 
 #endif
