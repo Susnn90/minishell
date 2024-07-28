@@ -134,7 +134,7 @@ t_list *split_string(t_list *token_list, char *input)	// WOrks not correct
 	token_len = i - start;
 	if (token_len > 0 && current)
 	{
-		strncpy(current->content, input + start, token_len);
+		ft_strlcpy(current->content, input + start, token_len);
 		current->content[token_len] = '\0';
 		current = current->next;
 	}
