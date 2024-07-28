@@ -6,13 +6,13 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/26 17:08:24 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/27 16:30:44 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c lexer_chris.c lexer_utils.c count_token.c
+SRC = main.c lexer.c count_utils.c check_quotes.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a

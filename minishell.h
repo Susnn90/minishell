@@ -12,7 +12,7 @@
 
 //#define	MAX_ARGS //maximum amount of acceptable variables from an input
 # define WHITESPACE "\t\n\v\f\r "
-# define QUOTES	"\'\""
+# define QUOTES	"'\""
 
 # define T_D_QUOTES 4 //double quote "\""
 # define T_S_QUOTES 2 //single quote '\''
@@ -23,10 +23,9 @@
 # define T_C_BRACKET 256 //close bracket ')'
 # define T_BI_OP 32 //binary operator '&'
 
-// Main & Utils
-int main (int argc, char **argv);//, char **envp);
-int	count_token(char *input);
-//lexer
+// Main
+int		main (int argc, char **argv);//, char **envp);
+int		check_quotes(char *input);
 
 //parse input
 // void parse_command(const char *input, char **command, char **args);

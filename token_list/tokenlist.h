@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:18:38 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/26 17:53:39 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/27 14:47:14 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,16 @@
 # include "../minishell.h"
 # include "../libft/libft.h"
 
-// typedef struct s_token
-// {
-// 	int		type;
-// 	char	*content;
-// 	char	**envp;
-
-// }	t_token;
-
 typedef struct s_list
 {
-	// t_token	*token;
 	struct s_list *prev;
 	struct s_list *next;
 	int		index;
 	int		type;
+	int		len;
+	char	*input;
 	char	*content;
+	char	*result;
 	char	**envp;
 }	t_list;
 
@@ -49,12 +43,18 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void*));
 
 // LEXER
-t_list	*lexer(char *input, t_list *token_list, int n_of_token);
-t_list	*get_token_list(char *input, t_list *token_list);
+t_list	*lexer(char *input, int n_of_token);
+t_list	*create_list(t_list *token_list, char *input, int n_of_token);
 t_list	*move_to_list_head(t_list *current);
-int		token_len(char *str);
+t_list	*split_string(t_list *token_list, char *input);
+int		malloc_for_content(t_list *token_list, t_list *new_token);
+int		count_token(char *input);
 int		quote_text_len(char *str);
 int		other_marks(char *c);
+void	token_len(t_list *token_list, char *input);
 void	define_token_type(t_list *token_list);
+void	print_token_list(t_list *token_list);
+
+
 
 #endif

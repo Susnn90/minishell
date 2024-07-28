@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	token_len(char *str)
+int	token_len_old(char *str)
 {
 	int i;
 
