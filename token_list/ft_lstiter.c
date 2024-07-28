@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 14:45:06 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/04 16:18:42 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/05 08:29:05 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/26 18:05:57 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokenlist.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstiter(t_list *lst, void (*f)(void*))
 {
-	if (lst && new)
+	if (!lst || !f)
+		return ;
+	while (lst != NULL)
 	{
-		new->next = *lst;
-		*lst = new;
+		f(lst->content);
+		lst = lst->next;
 	}
 }

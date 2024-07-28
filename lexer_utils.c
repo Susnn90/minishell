@@ -1,32 +1,23 @@
 #include "minishell.h"
 
-int	token_len(char *str)
+int	token_len_old(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_strchr(str, WHITESPACE) >= 0)
+		if (ft_strchr(WHITESPACE, str[i]) == NULL)
 			return (i);
-		else if (ft_strchr(str, QUOTES) >= 0)
-			return ();
+		else if (ft_strchr(QUOTES, str[i]) == NULL)
+			return (i);
 		else if (other_marks(str) > 0)
 			return (other_marks(str));
 		i++;
 	}
+	return (0);
 }
 
-void	token_type(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if 
-	}
-}
 int	quote_text_len(char *str)
 {
 	int	i;
@@ -36,7 +27,7 @@ int	quote_text_len(char *str)
 	// if (str[i] != QUOTES)
 	// 	return (0);
 	quote = str[i];
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] == quote)
 			return (i + 1);
@@ -47,6 +38,7 @@ int	quote_text_len(char *str)
 		printf("QUOTE IS MISSING!\n");
 		return (0);
 	}
+	return (0);
 }
 
 int	other_marks(char *c)

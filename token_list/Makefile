@@ -1,4 +1,4 @@
- # **************************************************************************** #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,13 +6,15 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 12:21:34 by cwick             #+#    #+#              #
-#    Updated: 2023/12/09 11:55:56 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/25 12:23:03 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf.a
+NAME = tokenlist.a
 
-SRC = ft_printf.c ft_print_char.c ft_print_str.c ft_print_nbr.c ft_print_u_nbr.c ft_print_ptr.c ft_print_hex.c
+SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
+	ft_lstiter.c ft_lstmap.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/14 13:36:09 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/14 14:04:30 by cwick            ###   ########.fr       */
+/*   Created: 2024/07/25 11:22:44 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/25 11:23:04 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	**ft_arrdup(char **arr)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	**dup;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (dup[i] != NULL)
-		i++;
-	dup = calloc(sizeof(char *), i + 1);
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (dup[i])
+	while (s1[i] && s2[i])
 	{
-
-
+		if (s1[i] < s2[i])
+			return (-1);
+		else if (s1[i] > s2[i])
+			return (1);
+		i++;
 	}
-
-
-
-	return (dup);
+	return (0);
 }

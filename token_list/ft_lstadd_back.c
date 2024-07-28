@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 10:08:10 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/17 14:12:52 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/05 06:52:00 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/26 17:45:43 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "tokenlist.h"
 
-int	ft_print_str(char *str)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
+	t_list *last;
 
-	i = 0;
-	if (str != NULL)
+	if (!lst || !new)
+		return;
+	if (!*lst)
 	{
-		while (str[i])
-		{
-			ft_print_char(str[i]);
-			i++;
-		}
-		return (i);
+		*lst = new;
+		return;
 	}
-	write(1,"(null)", 6);
-	return (6);
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
+	new->prev = last;
 }

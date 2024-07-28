@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 07:51:16 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/05 08:19:37 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/04 14:45:06 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/25 12:42:45 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokenlist.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }

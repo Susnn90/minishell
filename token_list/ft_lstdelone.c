@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 08:11:11 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/05 09:00:07 by cwick            ###   ########.fr       */
+/*   Created: 2023/12/05 07:51:16 by cwick             #+#    #+#             */
+/*   Updated: 2024/07/26 18:05:39 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokenlist.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_list	*current;
-
 	if (!lst || !del)
 		return ;
-	while (*lst != NULL)
-	{
-		current = *lst;
-		*lst = (*lst)->next;
-		del(current->content);
-		free(current);
-	}
-	*lst = NULL;
+	del(lst->content);
+	free(lst);
 }

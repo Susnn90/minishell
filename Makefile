@@ -6,33 +6,47 @@
 #    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/14 13:03:19 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/27 16:30:44 by cwick            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c
-SRC_OBJ = $(SRC:.c=.o)
+SRC = main.c lexer.c count_utils.c check_quotes.c
+OBJ = $(SRC:.c=.o)
+
+LIBFT = libft/libft.a
+TOKEN_LIST = token_list/tokenlist.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS = -lreadline #-lncurses			#linker flags
+LFLAGS = -lreadline			#linker flags
 
 all: $(NAME) clean
 
-$(NAME): $(SRC_OBJ)
-	$(CC) $(SRC_OBJ) -o $(NAME) $(LFLAGS)
+$(NAME): $(OBJ) $(LIBFT) $(TOKEN_LIST)
+	$(CC) $(OBJ) $(LIBFT) $(TOKEN_LIST) -o $(NAME) $(LFLAGS)
 
-%.o: %.c
+%.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+	# $(MAKE) -C libft
+
+$(LIBFT):
+	$(MAKE) -C libft
+
+ $(TOKEN_LIST):
+	$(MAKE) -C token_list
 
 clean:
-	rm -f $(SRC_OBJ)
+	rm -f $(OBJ)
+	$(MAKE) -C libft clean
+	$(MAKE) -C token_list clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C libft fclean
+	$(MAKE) -C token_list fclean
 
 re: fclean all
 
-.PHONY: all clean fclean all
+.PHONY: all clean fclean re
