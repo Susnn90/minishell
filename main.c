@@ -20,6 +20,23 @@ void print_token_list(t_list *token_list)
 	}
 }
 
+void	lstclear(t_list *token_list)
+{
+	t_list	*current;
+
+	if (!token_list)
+		return ;
+	while (token_list)
+	{
+		current = token_list;
+		token_list = token_list->next;
+		if (current->content)
+			free(current->content);
+		free(current);
+	}
+	token_list = NULL;
+}
+
 int main (int argc, char **argv)			//, char **envp)
 {
 	char	*input;
@@ -39,15 +56,15 @@ int main (int argc, char **argv)			//, char **envp)
 		input = readline("h@m$t3r$h3ll$> ");
 		if (input)
 		{
+			add_history(input);
 			if (check_quotes(input))
 				continue ;
-			add_history(input);
 			n_of_token = count_token(input);
 			token_list = lexer(input, n_of_token);
 			if (token_list)
 			{
 				print_token_list(token_list);
-				ft_lstclear(&token_list, free);
+				lstclear(token_list);
 			}
 			free (input);
 		}

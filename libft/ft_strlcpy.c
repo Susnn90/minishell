@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:36:10 by cwick             #+#    #+#             */
-/*   Updated: 2023/12/03 18:00:07 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:41:17 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 	}
 	if (destsize < 1)
 		return (src_length);
-	while (i < destsize - 1 && src[i] != '\0')
+	while (i <= destsize && src[i])
 	{
 		dest[i] = src[i];
 		i++;
