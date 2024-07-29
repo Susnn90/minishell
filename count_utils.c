@@ -11,12 +11,15 @@ int	count_token(char *input)
 	in_token = 0;
 	while(input[i])
 	{
-		if (input[i] != ' ' && in_token == 0)
+		if (input[i] != WHITESPACE)
 		{
-			in_token = 1;
-			counter++;
+			if (in_token == 0)
+			{
+				counter++;
+				in_token = 1;
+			}
 		}
-		else if (input[i] == ' ')
+		else if (input[i] == WHITESPACE)
 			in_token = 0;
 		i++;
 	}
