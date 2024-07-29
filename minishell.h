@@ -7,12 +7,15 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 //#define	MAX_ARGS //maximum amount of acceptable variables from an input
-# define WHITESPACE "\t\n\v\f\r "
+# define WHITESPACE ' '
 # define QUOTES	"'\""
+# define D_QUOTE '"'
+# define S_QUOTE '\''
 
 # define T_D_QUOTES 4 //double quote "\""
 # define T_S_QUOTES 2 //single quote '\''

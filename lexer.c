@@ -101,42 +101,48 @@ t_list *split_string(t_list *token_list, char *input)	// WOrks not correct
 	int i;
 	int start;
 	int token_len;
-	int	in_string;
+	int	in_dquote_string;
 	t_list *current = token_list;
 
 	i = 0;
 	start = 0;
 	token_len = 0;
-	in_string = 0;
+	in_dquote_string = 0;
 	while (input[i])
 	{
-		while (input[i] && ft_strchr(WHITESPACE, input[i]))
+		while (input[i] == WHITESPACE)
 			i++;
-		if (input[i] && !ft_strchr(WHITESPACE, input[i]))
+		start = i;
+		while (input[i])
 		{
-			start = i;
-			while (input[i])
+			if (input[i] == D_QUOTE)
 			{
-				if (input[i] == '"')
-				{
-					in_string = !in_string;
-					i++;
-				}
-				else if (in_string == 1)
-					i++;
-				else if (!ft_strchr(WHITESPACE, input[i]) && !in_string)
-					i++;
-				else if (ft_strchr(WHITESPACE, input[i]) && !in_string)
-					break ;
+				in_dquote_string = !in_dquote_string;
+				i++;
 			}
+			else if (input[i] == WHITESPACE && in_dquote_string)
+				i++;
+			else if (input[i] == WHITESPACE && !in_dquote_string)
+			{
+				i++;
+				goto fill_token;
+			}
+			else
+				i++;
 		}
+		fill_token:
+			token_len = i - start;
+			if (token_len > 0 && current)
+			{
+				ft_strlcpy(current->content, input + start, token_len);
+				// current->content[token_len] = '\0';
+				current = current->next;
+			}
 	}
-	token_len = i - start;
-	if (token_len > 0 && current)
+	if (input[i] && current)
 	{
 		ft_strlcpy(current->content, input + start, token_len);
 		current->content[token_len] = '\0';
-		current = current->next;
 	}
 	return token_list;
 }

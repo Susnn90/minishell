@@ -34,7 +34,7 @@ void	token_len(t_list *token_list, char *input)
 	current = token_list;
 	while (input[i])
 	{
-		if (!ft_strchr(WHITESPACE, input[i]))
+		if (input[i] != WHITESPACE)
 			counter++;
 		else if (counter > 0 && current)
 		{
