@@ -6,7 +6,7 @@
 /*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:18:38 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/28 14:21:33 by cwick            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:20:26 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_lstiter(t_list *lst, void (*f)(void*));
 t_list	*lexer(char *input, int n_of_token);
 t_list	*create_list(t_list *token_list, char *input, int n_of_token);
 t_list	*move_to_list_head(t_list *current);
-t_list	*split_string(t_list *token_list, char *input);
-int		malloc_for_content(t_list *token_list, t_list *new_token);
+t_list *split_string(t_list *token_list, char *input, int n_of_token);
+t_list	*malloc_for_content(t_list *token_list, t_list *new_token);
 int		count_token(char *input);
 int		quote_text_len(char *str);
 int		other_marks(char *c);
