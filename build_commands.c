@@ -1,17 +1,17 @@
 #include "minishell.h"
 
-t_cmd *init_command() 
+t_cmd *init_command()
 {
-    t_cmd *cmd = malloc(sizeof(t_cmd));
-    cmd->name = NULL;
-    cmd->args = NULL;
-    cmd->input_redirect = 0;
-    cmd->output_redirect = 0;
-    cmd->input_file = NULL;
-    cmd->output_file = NULL;
-    cmd->append_output = 0;
-    cmd->next = NULL;
-    return cmd;
+	t_cmd *cmd = malloc(sizeof(t_cmd));
+	cmd->name = NULL;
+	cmd->args = NULL;
+	cmd->input_redirect = 0;
+	cmd->output_redirect = 0;
+	cmd->input_file = NULL;
+	cmd->output_file = NULL;
+	cmd->append_output = 0;
+	cmd->next = NULL;
+	return cmd;
 }
 
 t_cmd	*parse_tokens(t_list *token)
@@ -30,25 +30,25 @@ t_cmd	*parse_tokens(t_list *token)
 			new_cmd = init_command();
 			new_cmd->name = ft_strdup(token->content);
 			if (current_cmd = NULL)
-			cmd = new_cmd;
+				cmd = new_cmd;
 			else
 				current_cmd->next = new_cmd;
 			current_cmd = new_cmd;
 			arg_count = 0;
 		}
-		else if (token->type == T_S_QUOTES || token->type == T_D_QUOTES)
+		else if (token->type == T_S_QUOTES || token->type == T_D_QUOTES) // there are no quotes in the content, i skiped them
 			handle_quotes();//TODO
 		else if (token->type == T_REDIR)
 		{
-			handle_redir(other_marks(token->content)); 
-								//TODO: 
+			handle_redir(other_marks(token->content));
+								//TODO:
 								//handle: input dir, output dir, append_output
 		}
 		else if (token->type = T_PIPE)
 		{
 			t_cmd *new_cmd = init_command();
-            current_cmd->next = new_cmd;
-            current_cmd = new_cmd;
+			current_cmd->next = new_cmd;
+			current_cmd = new_cmd;
 		}
 		// else if (token->type = T_BI_OP) //pending...
 		token = token->next;
@@ -81,7 +81,7 @@ t_cmd	*parse_tokens(t_list *token)
 // 			cmd->name = EXIT;
 // 	}
 // 	return (cmd);
-// } 
+// }
 
 
 // t_cmd *malloc_command(t_cmd *cmd)
@@ -99,8 +99,8 @@ t_cmd	*parse_tokens(t_list *token)
 
 // void print_command(t_list *token_list)
 // {
-// 	t_cmd *cmd; 
-	
+// 	t_cmd *cmd;
+
 // 	cmd = init_command(token_list);
 // 	if (cmd == NULL)
 // 	{
@@ -137,4 +137,3 @@ t_cmd	*parse_tokens(t_list *token)
 // 	}
 // 	free(cmd);
 // }
-

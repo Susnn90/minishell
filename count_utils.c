@@ -67,9 +67,15 @@ void	token_len(t_list *token_list, char *input)
 		if (input[i] == D_QUOTE || input[i] == S_QUOTE)
 		{
 			if (input[i] == S_QUOTE && !in_dquote_string)
+			{
 				in_squote_string = !in_squote_string;
+				counter++;
+			}
 			else if (input[i] == D_QUOTE && !in_squote_string)
+			{
 				in_dquote_string = !in_dquote_string;
+				counter++;
+			}
 			else
 				counter++;
 		}

@@ -2,18 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "lldb",
-      "request": "launch",
-      "name": "Debug in Terminal",
-      "program": "${workspaceFolder}/minishell",
-      "args": [
-        "<",
-        "input.txt"
-      ],
-      "cwd": "${workspaceFolder}",
-      "preLaunchTask": "build"
-    },
-    {
       "name": "gcc - Build and debug active file",
       "type": "cppdbg",
       "request": "launch",

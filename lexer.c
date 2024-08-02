@@ -122,6 +122,7 @@ t_list *split_string(t_list *token_list, char *input, int n_of_token)
 			start += 2;
 			token_list->content = NULL;
 			token_list = token_list->next;
+			i++;
 			continue ;
 		}
 		else if (input[start] == D_QUOTE && input[start + 1] == D_QUOTE)
@@ -132,17 +133,17 @@ t_list *split_string(t_list *token_list, char *input, int n_of_token)
 			i++;
 			continue ;
 		}
-		if (input[start] == S_QUOTE || input[start] == D_QUOTE)
-			start++;
-		ft_strlcpy(token_list->content, &input[start], token_list->len + 1);
+		// if (input[start] == S_QUOTE || input[start] == D_QUOTE)
+		// 	start++;
+		ft_strlcpy(token_list->content, &input[start], token_list->len);
 		start += token_list->len;
 		token_list = token_list->next;
 		i++;
 	}
 	if (input[start] && token_list)
 	{
-		ft_strlcpy(token_list->content, input + start, token_list->len + 1);
-		token_list->content[token_list->len] = '\0';
+		ft_strlcpy(token_list->content, input + start, token_list->len);
+		// token_list->content[token_list->len] = '\0';
 	}
 	token_list = head;
 	return (token_list);
