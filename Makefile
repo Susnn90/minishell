@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+         #
+#    By: babybird <babybird@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/07/27 16:30:44 by cwick            ###   ########.fr        #
+#    Updated: 2024/07/31 13:24:46 by babybird         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c lexer.c count_utils.c check_quotes.c
+SRC = main.c lexer.c count_utils.c check_quotes.c build_commands.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a

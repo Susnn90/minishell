@@ -63,6 +63,7 @@ int main (int argc, char **argv)			//, char **envp)
 			token_list = lexer(input, n_of_token);
 			if (token_list)
 			{
+				print_command(token_list);
 				print_token_list(token_list);
 				lstclear(token_list);
 			}
