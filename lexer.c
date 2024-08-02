@@ -103,6 +103,7 @@ t_list	*lexer(char *input, int n_of_token)
 	token_list = head;
 	return(token_list);
 }
+
 t_list *split_string(t_list *token_list, char *input, int n_of_token)
 {
 	int	i;
@@ -144,5 +145,5 @@ t_list *split_string(t_list *token_list, char *input, int n_of_token)
 		token_list->content[token_list->len] = '\0';
 	}
 	token_list = head;
-	return token_list;
+	return (token_list);
 }
