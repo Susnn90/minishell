@@ -13,6 +13,8 @@ void print_token_list(t_list *token_list)
 		printf("index %d\nlen %d\ninput %s\nresult %s\ncontent %s\ntype %d\n",
 			current->index, current->len,current->input,
 			current->result, current->content, current->type);
+		printf("is token a simple command: %s\n", current->is_scmd ? "true" : "false");
+		printf("simple command type is: %d\n", current->scmd_type);
 		if (current->next)
 			printf("\n");
 		i++;
@@ -63,7 +65,8 @@ int main (int argc, char **argv)			//, char **envp)
 			token_list = lexer(input, n_of_token);
 			if (token_list)
 			{
-				print_command(token_list);
+				//print_command(token_list);
+				parse_tokens(token_list);
 				print_token_list(token_list);
 				lstclear(token_list);
 			}

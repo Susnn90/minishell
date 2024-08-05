@@ -52,6 +52,16 @@ t_list	*create_list(t_list *token_list, char *input, int n_of_token)
 		new_token->prev = NULL;
 		new_token->next = NULL;
 		new_token->content = NULL;
+		/*** new added ***/
+		new_token->is_scmd = false;
+		new_token->is_scmd = 0;
+		new_token->input_redirect = 0;
+		new_token->output_redirect = 0;
+		new_token->input_file = NULL;
+		new_token->output_file = NULL;
+		new_token->append_output = 0;
+
+		/*****************/
 		ft_lstadd_back(&token_list, new_token);
 		i++;
 	}

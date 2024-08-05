@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenlist.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: babybird <babybird@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:18:38 by cwick             #+#    #+#             */
-/*   Updated: 2024/07/29 15:20:26 by cwick            ###   ########.fr       */
+/*   Updated: 2024/08/05 00:46:25 by babybird         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "../minishell.h"
 # include "../libft/libft.h"
 
@@ -30,7 +31,17 @@ typedef struct s_list
 	char	*content;
 	char	*result;
 	char	**envp;
+	//new added
+	bool	is_scmd;
+	int		scmd_type;
+	int input_redirect; //flag bit, to indicate whether there is in/out-put redirection： '<', if yes, set to 1
+	int output_redirect; // 👆 '>', '>>'
+	char *input_file; 
+	char *output_file;
+	int append_output; //Flag bit, to indicate whether output is append node. i.e. '>>'
+	char **args;//argument array
 }	t_list;
+
 
 t_list	*ft_lstnew(void *input);
 t_list	*ft_lstlast(t_list *lst);
