@@ -1,23 +1,23 @@
 #include "minishell.h"
 
 //define token type, with giving definiation (check minishell.h line.15-line.22)
-void	define_token_type(t_list *token_list)
-{
-	if (token_list->content)
-	{
-		if (ft_strcmp(token_list->content, "|") == 0)
-			token_list->type = T_PIPE;
-		else if (ft_strcmp(token_list->content, ">") == 0
-			|| ft_strcmp(token_list->content, "<") == 0
-			|| ft_strcmp(token_list->content, "<<") == 0
-			|| ft_strcmp(token_list->content, ">>") == 0)
-			token_list->type = T_REDIR;
-		else if (ft_strcmp(token_list->content, "&") == 0)
-			token_list->type = T_BI_OP;
-		else
-			token_list->type = T_TEXT;
-	}
-}
+// void	define_token_type(t_list *token_list)
+// {
+// 	if (token_list->content)
+// 	{
+// 		if (ft_strcmp(token_list->content, "|") == 0)
+// 			token_list->type = T_PIPE;
+// 		else if (ft_strcmp(token_list->content, ">") == 0
+// 			|| ft_strcmp(token_list->content, "<") == 0
+// 			|| ft_strcmp(token_list->content, "<<") == 0
+// 			|| ft_strcmp(token_list->content, ">>") == 0)
+// 			token_list->type = T_REDIR;
+// 		else if (ft_strcmp(token_list->content, "&") == 0)
+// 			token_list->type = T_BI_OP;
+// 		else
+// 			token_list->type = T_TEXT;
+// 	}
+// }
 
 //move the pointer to head of the list
 t_list	*move_to_list_head(t_list *current)
@@ -53,8 +53,8 @@ t_list	*create_list(t_list *token_list, char *input, int n_of_token)
 		new_token->next = NULL;
 		new_token->content = NULL;
 		/*** new added ***/
-		new_token->is_scmd = false;
-		new_token->is_scmd = 0;
+		//new_token->is_scmd = false;
+		//new_token->is_scmd = 0;
 		new_token->input_redirect = 0;
 		new_token->output_redirect = 0;
 		new_token->input_file = NULL;
@@ -105,11 +105,11 @@ t_list	*lexer(char *input, int n_of_token)
 	}
 	head = token_list;
 	token_list = split_string(token_list, input, n_of_token);
-	while (token_list)
-	{
-		define_token_type(token_list);
-		token_list = token_list->next;
-	}
+	// while (token_list)
+	// {
+	// 	define_token_type(token_list);
+	// 	token_list = token_list->next;
+	// }
 	token_list = head;
 	return(token_list);
 }

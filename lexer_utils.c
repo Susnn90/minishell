@@ -21,22 +21,3 @@ int	quote_text_len(char *str)
 	}
 	return (0);
 }
-
-int	other_marks(char *c)
-{
-	if (*c == '(' || *c == ')')
-		return (1);
-	else if (*c == '<' && *(c + 1) != '<')
-		return (1);
-	else if (*c == '<' && *(c + 1) == '<')
-		return (2);
-	else if (*c == '>' && *(c + 1) != '>')
-		return (1);
-	else if (*c == '>' && *(c + 1) == '>')
-		return (2);
-	else if (*c == '|' && *(c + 1) != '|')
-		return (1);
-	else if (*c == '&' && *(c + 1) != '&')
-		return (1);
-	return (0);
-}

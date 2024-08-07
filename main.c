@@ -13,8 +13,8 @@ void print_token_list(t_list *token_list)
 		printf("index %d\nlen %d\ninput %s\nresult %s\ncontent %s\ntype %d\n",
 			current->index, current->len,current->input,
 			current->result, current->content, current->type);
-		printf("is token a simple command: %s\n", current->is_scmd ? "true" : "false");
-		printf("simple command type is: %d\n", current->scmd_type);
+		//printf("is token a simple command: %s\n", current->is_scmd ? "true" : "false");
+		//printf("simple command type is: %d\n", current->scmd_type);
 		if (current->next)
 			printf("\n");
 		i++;
