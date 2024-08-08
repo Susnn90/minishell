@@ -1,23 +1,44 @@
 #include "minishell.h"
 
 //define token type, with giving definiation (check minishell.h line.15-line.22)
-// void	define_token_type(t_list *token_list)
-// {
-// 	if (token_list->content)
-// 	{
-// 		if (ft_strcmp(token_list->content, "|") == 0)
-// 			token_list->type = T_PIPE;
-// 		else if (ft_strcmp(token_list->content, ">") == 0
-// 			|| ft_strcmp(token_list->content, "<") == 0
-// 			|| ft_strcmp(token_list->content, "<<") == 0
-// 			|| ft_strcmp(token_list->content, ">>") == 0)
-// 			token_list->type = T_REDIR;
-// 		else if (ft_strcmp(token_list->content, "&") == 0)
-// 			token_list->type = T_BI_OP;
-// 		else
-// 			token_list->type = T_TEXT;
-// 	}
-// }
+void	define_type(t_list *token)
+{
+	if (ft_strcmp(token->content, ">") == 0)
+		token->type = TRUNC;
+	else if (ft_strcmp(token->content, ">>") == 0)
+		token->type = APPEND;
+	else if (ft_strcmp(token->content, "<<") == 0)
+		token->type = DOUBLE_INPUT;
+	else if (ft_strcmp(token->content, "<") == 0)
+		token->type = INPUT;
+	else if (ft_strcmp(token->content, "|") == 0)
+		token->type = PIPE;
+	else if (ft_strcmp(token->content, ";") == 0)
+		token->type = END;
+	else if (token->prev == NULL || token->prev->type >= TRUNC)
+		token->type = CMD;
+	else
+		token->type = ARG;
+}
+
+int cmd_is_build_in(t_list *token) //if it's build in, then execute build in functions. if not, use execve()
+{
+    if (token->type == CMD && ft_strcmp(token->content, "echo") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "cd") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "pwd") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "export") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "unset") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "env") == 0)
+		return (1);
+    if (token->type == CMD && ft_strcmp(token->content, "exit") == 0)
+		return (1);
+    return (0);
+}
 
 //move the pointer to head of the list
 t_list	*move_to_list_head(t_list *current)
@@ -52,16 +73,6 @@ t_list	*create_list(t_list *token_list, char *input, int n_of_token)
 		new_token->prev = NULL;
 		new_token->next = NULL;
 		new_token->content = NULL;
-		/*** new added ***/
-		//new_token->is_scmd = false;
-		//new_token->is_scmd = 0;
-		new_token->input_redirect = 0;
-		new_token->output_redirect = 0;
-		new_token->input_file = NULL;
-		new_token->output_file = NULL;
-		new_token->append_output = 0;
-
-		/*****************/
 		ft_lstadd_back(&token_list, new_token);
 		i++;
 	}
@@ -105,14 +116,15 @@ t_list	*lexer(char *input, int n_of_token)
 	}
 	head = token_list;
 	token_list = split_string(token_list, input, n_of_token);
-	// while (token_list)
-	// {
-	// 	define_token_type(token_list);
-	// 	token_list = token_list->next;
-	// }
+	while (token_list)
+	{
+		define_type(token_list);
+		token_list = token_list->next;
+	}
 	token_list = head;
 	return(token_list);
 }
+
 t_list *split_string(t_list *token_list, char *input, int n_of_token)
 {
 	int	i;
@@ -131,6 +143,7 @@ t_list *split_string(t_list *token_list, char *input, int n_of_token)
 			start += 2;
 			token_list->content = NULL;
 			token_list = token_list->next;
+			i++;
 			continue ;
 		}
 		else if (input[start] == D_QUOTE && input[start + 1] == D_QUOTE)
@@ -141,18 +154,18 @@ t_list *split_string(t_list *token_list, char *input, int n_of_token)
 			i++;
 			continue ;
 		}
-		if (input[start] == S_QUOTE || input[start] == D_QUOTE)
-			start++;
-		ft_strlcpy(token_list->content, &input[start], token_list->len + 1);
+		// if (input[start] == S_QUOTE || input[start] == D_QUOTE)
+		// 	start++;
+		ft_strlcpy(token_list->content, &input[start], token_list->len);
 		start += token_list->len;
 		token_list = token_list->next;
 		i++;
 	}
 	if (input[start] && token_list)
 	{
-		ft_strlcpy(token_list->content, input + start, token_list->len + 1);
-		token_list->content[token_list->len] = '\0';
+		ft_strlcpy(token_list->content, input + start, token_list->len);
+		// token_list->content[token_list->len] = '\0';
 	}
 	token_list = head;
-	return token_list;
+	return (token_list);
 }

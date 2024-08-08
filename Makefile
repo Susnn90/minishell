@@ -6,14 +6,13 @@
 #    By: babybird <babybird@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 12:35:11 by cwick             #+#    #+#              #
-#    Updated: 2024/08/07 15:30:45 by babybird         ###   ########.fr        #
+#    Updated: 2024/08/08 15:28:55 by babybird         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c lexer.c count_utils.c check_quotes.c parse_cmd.c parse.c parse_cmd_buildin.c
-OBJ = $(SRC:.c=.o)
+SRC = main.c lexer.c count_utils.c check_quotes.c helper_utils.c
 
 LIBFT = libft/libft.a
 TOKEN_LIST = token_list/tokenlist.a

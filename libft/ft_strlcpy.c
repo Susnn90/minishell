@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babybird <babybird@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwick <cwick@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:36:10 by cwick             #+#    #+#             */
-/*   Updated: 2024/08/05 13:04:58 by babybird         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:22:09 by cwick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 	}
 	if (destsize < 1)
 		return (src_length);
-	while (i <= destsize && src[i])
+	while (i < destsize && src[i])
 	{
 		dest[i] = src[i];
 		i++;
